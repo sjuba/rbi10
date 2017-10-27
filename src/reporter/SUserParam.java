@@ -9,7 +9,7 @@ import reporter.xml.SEnumDataType;
 
 /**
  *
- * @author Alphalapz
+ * @author Alfredo Pérez
  */
 public class SUserParam {
 

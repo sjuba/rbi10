@@ -16,7 +16,7 @@ import reporter.xml.SEnumFilterType;
 
 /**
  *
- * @author Alphalapz
+ * @author Alfredo Pérez
  */
 public class SDataRow {
 

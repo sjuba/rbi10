@@ -2,7 +2,7 @@ package reporter.xml;
 
 /**
  *
- * @author Alphalapz
+ * @author Alfredo Pérez
  */
 public enum SEnumElementExprType {
     OPERAND_CONST,

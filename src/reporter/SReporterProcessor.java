@@ -5,10 +5,10 @@
  */
 package reporter;
 
-import processor.out.SReportElement;
 import java.util.ArrayList;
 import processor.in.SDataContainer;
 import processor.out.SReportColumn;
+import processor.out.SReportElement;
 import processor.out.SReportRow;
 import reporter.xml.SElementReportColumn;
 import reporter.xml.SElementReportElement;
@@ -17,7 +17,7 @@ import sa.lib.xml.SXmlElement;
 
 /**
  *
- * @author Alphalapz
+ * @author Alfredo Pérez
  */
 public class SReporterProcessor {
     
@@ -30,43 +30,49 @@ public class SReporterProcessor {
     public SReporterProcessor(final SReporterTemplate reporterTemplate) throws Exception {
         moReporterTemplate = reporterTemplate;
         
+        // compute data containers:
         maDataContainers = new ArrayList<>();
-        computeReportDataContainers();
+        for (SReporterDataSource dataSource : moReporterTemplate.getDataSourcesMap().values()) {
+            maDataContainers.add(new SDataContainer(this, dataSource));
+        }
         
+        // prepare report columns:
         maReportColumns = new ArrayList<>();
         for (SXmlElement element: moReporterTemplate.getTemplate().getElementReport().getElementReportColumns().getXmlElements()) {
             maReportColumns.add(new SReportColumn((SElementReportColumn) element));
         }
         
+        // prepare report rows:
         maReportRows = new ArrayList<>();
         for (SXmlElement element: moReporterTemplate.getTemplate().getElementReport().getElementReportRows().getXmlElements()) {
             maReportRows.add(new SReportRow((SElementReportRow) element));
         }
         
+        // compute report elements:
         maReportElements = new ArrayList<>();
-        computeReportElements();
+        /*Only for Debug */
+        //int cont=0;
+        for (SXmlElement element : moReporterTemplate.getTemplate().getElementReport().getElementReportElements().getXmlElements()) {
+            maReportElements.add(new SReportElement(this, (SElementReportElement) element));
+        /*Only for Debug */
+//            System.out.println("---START---");
+//            System.out.println(maReportElements.get(cont).getName());
+//            System.out.println(maReportElements.get(cont).getValue());
+//            System.out.println("Pos: " + ((cont++)-1));
+//            System.out.println("Col: " + maReportElements.get(cont-1).getColumnNumber());
+//            System.out.println("Row: " + maReportElements.get(cont-1).getRowNumber());
+//            System.out.println("---END---");
+        }
     }
-    
+
     /*
      * Private methods:
      */
-    
-    private void computeReportDataContainers() throws Exception {
-        for (SReporterDataSource dataSource : moReporterTemplate.getDataSourcesMap().values()) {
-            maDataContainers.add(new SDataContainer(this, dataSource));
-        }
-    }
-    
-    private void computeReportElements() throws Exception {
-        for (SXmlElement element : moReporterTemplate.getTemplate().getElementReport().getElementReportElements().getXmlElements()) {
-            maReportElements.add(new SReportElement(this, (SElementReportElement) element));
-        }
-    }
-    
+
     /*
      * Public methods:
      */
-    
+
     public SReporterTemplate getReporterTemplate() {
         return moReporterTemplate;
     }

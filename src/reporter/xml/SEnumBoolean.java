@@ -7,7 +7,7 @@ package reporter.xml;
 
 /**
  *
- * @author USER
+ * @author Alfredo Pérez
  */
 public enum SEnumBoolean {
     TRUE,

@@ -5,13 +5,14 @@
  */
 package processor.out;
 
+import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Font;
 import org.apache.poi.ss.usermodel.HorizontalAlignment;
 import reporter.xml.SEnumFontAlign;
 
 /**
  *
- * @author Alphalapz
+ * @author Alfredo Pérez
  */
 public abstract class SGeneratorExcelUtils {
 
@@ -23,7 +24,7 @@ public abstract class SGeneratorExcelUtils {
         return isCursive;
     }
 
-    public static HorizontalAlignment getAlignCell(SEnumFontAlign align) {
+        public static HorizontalAlignment getAlignCell(SEnumFontAlign align) {
         switch (align) {
             case CENTER:
                 return HorizontalAlignment.CENTER;
@@ -33,6 +34,19 @@ public abstract class SGeneratorExcelUtils {
                 return HorizontalAlignment.RIGHT;
             default:
                 return HorizontalAlignment.JUSTIFY;
+        }
+    }
+        
+    public static short getAlignCellShort(SEnumFontAlign align) {
+        switch (align) {
+            case CENTER:
+                return CellStyle.ALIGN_CENTER;
+            case LEFT:
+                return CellStyle.ALIGN_LEFT;
+            case RIGHT:
+                return CellStyle.ALIGN_RIGHT;
+            default:
+                return CellStyle.ALIGN_JUSTIFY;
         }
     }
 }

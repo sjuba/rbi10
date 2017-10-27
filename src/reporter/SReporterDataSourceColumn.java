@@ -10,7 +10,7 @@ import reporter.xml.SElementDataSourceColumn;
 
 /**
  *
- * @author Alphalapz
+ * @author Alfredo Pérez
  */
 public class SReporterDataSourceColumn {
     

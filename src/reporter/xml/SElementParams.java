@@ -9,7 +9,7 @@ import sa.lib.xml.SXmlElement;
 
 /**
  *
- * @author Alphalapz
+ * @author Alfredo Pérez
  */
 public class SElementParams extends SXmlElement {
     

@@ -6,12 +6,15 @@
 package reporter;
 
 import java.io.IOException;
+import java.util.Calendar;
 import java.util.HashMap;
+import reporter.xml.SEnumDataType;
 import reporter.xml.SEnumReportType;
+import sa.lib.SLibTimeUtils;
 
 /**
  *
- * @author Alphalapz
+ * @author Alfredo Pérez
  */
 public class SReporterXXX {
 
@@ -23,40 +26,20 @@ public class SReporterXXX {
      */
     public static void main(String[] args) throws IOException, Exception {
 
-        // user params for test:
         HashMap<String, SUserParam> userParams = new HashMap<>();
+        String[] months = SLibTimeUtils.createMonthsOfYearStd(Calendar.LONG);
+            userParams.put("tFechaIni", new SUserParam("tFechaIni", SEnumDataType.STRING, "2017-09-01"));
+            userParams.put("tFechaFin", new SUserParam("tFechaFin", SEnumDataType.STRING, "2017-09-30"));
+            userParams.put("sMes", new SUserParam("sMes", SEnumDataType.STRING, "AGOSTO"));
+            userParams.put("sCuentaTraspasoCompras", new SUserParam("sCuentaTraspasoCompras", SEnumDataType.STRING, "5100-9999-0000"));
+            userParams.put("sCuentaGastosProd", new SUserParam("sCuentaGastosProd", SEnumDataType.STRING, "6000-0003-0000"));
+            userParams.put("sCentroCostoRefacturacion", new SUserParam("sCentroCostoRefacturacion", SEnumDataType.STRING, "900-00-00-000"));
+            userParams.put("sItemTraspasoGastosProd", new SUserParam("sItemTraspasoGastosProd", SEnumDataType.STRING, "GP9998"));
 
-//        SUserParam up1 = new SUserParam("valor",            SEnumDataType.STRING,       "persona");
-//        SUserParam up2 = new SUserParam("inicio",           SEnumDataType.LONG,         150L);
-//        SUserParam up3 = new SUserParam("fin",              SEnumDataType.DOUBLE,       1500.85);
-//        SUserParam up4 = new SUserParam("StringparamName4", SEnumDataType.DOUBLE,       666d);
-//        SUserParam up5 = new SUserParam("StringparamName5", SEnumDataType.DATE,         new Date());
-//        SUserParam up6 = new SUserParam("StringparamName1.1", SEnumDataType.BOOLEAN, null);
-//        SUserParam up7 = new SUserParam("StringparamName2.1", SEnumDataType.LONG, null);
-//        SUserParam up8 = new SUserParam("StringparamName3.1", SEnumDataType.DOUBLE, null);
-//        SUserParam up9 = new SUserParam("StringparamName4.1", SEnumDataType.STRING, null);
-//        SUserParam up10 = new SUserParam("StringparamName5.1", SEnumDataType.DATE, null);
-//
-//        userParams.put(up1.getName(), up1);
-//        userParams.put(up2.getName(), up2);
-//        userParams.put(up3.getName(), up3);
-//        userParams.put(up4.getName(), up4);
-//        userParams.put(up5.getName(), up5);
-//        userParams.put(up6.getName(), up6);
-//        userParams.put(up7.getName(), up7);
-//        userParams.put(up8.getName(), up8);
-//        userParams.put(up9.getName(), up9);
-//        userParams.put(up10.getName(), up10);
-
-        // user data sources for test:
         HashMap<String, SUserDataSource> userDataSources = new HashMap<>();
 
-//        SUserDataSource uds1 = new SUserDataSource("PERSONA", SEnumDataSourceType.MYSQL, "127.0.0.1", "3306", "ALV", "root", "msroot");
-
-//        userDataSources.put(uds1.getName(), uds1);
-
         SReporter reporter = new SReporter();
-        reporter.generateReport("xml2.xml", "MyXmlFile.xls", SEnumReportType.EXCEL, userParams, userDataSources);
+        reporter.generateReport("C:\\Users\\USER\\Documents\\NetBeansProjects\\siie32\\reps\\rbi_fin_statements.xml", "MyXmlFile.xls", SEnumReportType.EXCEL, userParams, userDataSources);
 
     }
 }

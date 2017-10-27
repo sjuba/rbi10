@@ -10,7 +10,7 @@ import sa.lib.SLibUtils;
 
 /**
  *
- * @author Alphalapz
+ * @author Alfredo Pérez
  */
 public class SReportColumn {
     

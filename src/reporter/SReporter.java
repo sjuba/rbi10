@@ -11,7 +11,7 @@ import processor.out.SGeneratorExcel;
 
 /**
  *
- * @author Alphalapz
+ * @author Alfredo Pérez
  */
 public class SReporter {
 

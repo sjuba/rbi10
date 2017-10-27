@@ -9,7 +9,7 @@ import reporter.xml.SEnumDataSourceType;
 
 /**
  *
- * @author Alphalapz
+ * @author Alfredo Pérez
  */
 public class SUserDataSource {
 

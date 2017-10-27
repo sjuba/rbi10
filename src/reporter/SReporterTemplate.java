@@ -14,7 +14,7 @@ import sa.lib.xml.SXmlUtils;
 
 /**
  *
- * @author Alphalapz
+ * @author Alfredo Pérez
  */
 public class SReporterTemplate {
     

@@ -7,7 +7,7 @@ package processor.in;
 
 /**
  *
- * @author Alphalapz
+ * @author Alfredo Pérez
  */
 public final class SNull {
     

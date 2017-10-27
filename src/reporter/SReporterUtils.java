@@ -14,47 +14,43 @@ import reporter.xml.SEnumFilterComparison;
 
 /**
  *
- * @author Alphalapz
+ * @author Alfredo Pérez
  */
 public abstract class SReporterUtils {
 
     public static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
     public static final SimpleDateFormat DATE_TIME_FORMAT = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
     public static final SimpleDateFormat TIME_FORMAT = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-    
+
     /*
      * Private methods:
      */
-
     /**
      * Normalizes supported data types to Double or String objects.
+     *
      * @param value Value to normalize.
      * @return Normalized value: a Double or a String.
-     * @throws Exception 
+     * @throws Exception
      */
     private static Object normalizeValue(final Object value) throws Exception {
         Object normalizedValue = null;
-        
+
         if (value instanceof Boolean) {
             normalizedValue = ((boolean) value) ? 1d : 0d;
-        }
-        else if (value instanceof Number) {
+        } else if (value instanceof Number) {
             normalizedValue = (double) value;
-        }
-        else if (value instanceof String) {
+        } else if (value instanceof String) {
             normalizedValue = value;
-        }
-        else if (value instanceof Date) {
+        } else if (value instanceof Date) {
             normalizedValue = (double) ((Date) value).getTime();
         }
-        
+
         return normalizedValue;
     }
-    
+
     /*
      * Public methods:
      */
-
     /**
      * Checks if value is an instance of expected class.
      *
@@ -108,7 +104,7 @@ public abstract class SReporterUtils {
 
         switch (dataType) {
             case BOOLEAN:
-                cast = Boolean.parseBoolean(value);
+                cast = value.compareTo("1") == 0 || Boolean.parseBoolean(value);
                 break;
             case LONG:
                 cast = Long.parseLong(value);
@@ -133,25 +129,25 @@ public abstract class SReporterUtils {
 
         return cast;
     }
-    
+
     /**
      * Compares values 1 and 2 with desired Boolean comparison.
-     * 
+     *
      * @param value1 Value 1.
      * @param value2 Value 2.
      * @param comparison Boolean comparisson.
      * @return Result of Boolean comparisson.
-     * @throws Exception 
+     * @throws Exception
      */
     public static boolean compareValues(final Object value1, final Object value2, final SEnumFilterComparison comparison) throws Exception {
         boolean result = false;
-        Object normalizedValue1 = normalizeValue(value1);
-        Object normalizedValue2 = normalizeValue(value2);
-        
+        Object normalizedValue1 = normalizeValue(value1) == null ? "" : normalizeValue(value1);
+        Object normalizedValue2 = normalizeValue(value2) == null ? "" : normalizeValue(value2);
+
         if (normalizedValue1 instanceof Double && normalizedValue2 instanceof Double) {
             double d1 = (double) normalizedValue1;
             double d2 = (double) normalizedValue2;
-            
+
             switch (comparison) {
                 case LESS:
                     result = d1 < d2;
@@ -173,11 +169,10 @@ public abstract class SReporterUtils {
                     break;
                 default:
             }
-        }
-        else if (normalizedValue1 instanceof String && normalizedValue2 instanceof String) {
+        } else if (normalizedValue1 instanceof String && normalizedValue2 instanceof String) {
             String s1 = (String) normalizedValue1;
             String s2 = (String) normalizedValue2;
-            
+
             switch (comparison) {
                 case LESS:
                     result = s1.compareTo(s2) < 0;
@@ -199,11 +194,10 @@ public abstract class SReporterUtils {
                     break;
                 default:
             }
-        }
-        else {
+        } else {
             throw new Exception("Unsupported or incompatible values!");
         }
-        
+
         return result;
     }
 
@@ -291,8 +285,7 @@ public abstract class SReporterUtils {
         for (int i = 0; i < palabras.length - 1; i++) {
             if (i % 2 == 0) {
                 valores.add(palabras[i]);
-            }
-            else {
+            } else {
                 comparisson.add(palabras[i]);
             }
         }

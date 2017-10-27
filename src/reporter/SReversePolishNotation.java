@@ -2,32 +2,21 @@ package reporter;
 
 /**
  *
- * @author Alphalapz
+ * @author Alfredo Pérez
  */
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Stack;
 
 public class SReversePolishNotation {
 
-    public static void main(String[] args) {
-        String expr = "15 7 1 1 + - / 3 * 2 1 1 + + -";
+    public static void main(String[] args) throws IOException {
+        System.out.println("Ingrese cadena RPN (ejemplo: '5 5 +':");
+        BufferedReader buffer=new BufferedReader(new InputStreamReader(System.in));
+        String expr=buffer.readLine();
         System.out.println("Expresion: " + expr);
         System.out.println("Resultado: " + runNpi(expr));
-    }
-
-    public static String nueva(final String expr) {
-        String[] postfix = expr.split(" ");
-        Stack< String> pila = new Stack<>();
-        int cantidadDeElementos = 0;
-        for (int i = 0; i <= postfix.length; i++) {
-            if (!isSigno(postfix[i])) {
-                pila.push(postfix[i]);
-            }
-            else {
-                cantidadDeElementos = pila.size();
-            }
-
-        }
-        return null;
     }
 
     public static String runNpi(final String expr) {

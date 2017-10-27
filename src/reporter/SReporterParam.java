@@ -11,7 +11,7 @@ import sa.lib.xml.SXmlElement;
 
 /**
  *
- * @author Alphalapz
+ * @author Alfredo Pérez
  */
 public class SReporterParam extends SUserParam implements SArgumentInterface {
     
