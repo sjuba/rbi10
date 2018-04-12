@@ -5,9 +5,6 @@
  */
 package processor.in;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.Writer;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
@@ -47,12 +44,6 @@ public class SDataContainer {
 
         Statement statement = database.getConnection().createStatement();
         ResultSet resultSet = statement.executeQuery(moReporterDataSource.composeQuery());
-        /*Only for Debug or test*/
-        Writer output;
-        output = new BufferedWriter(new FileWriter("DB.txt", true));  //clears file every time
-        output.append(moReporterDataSource.getName() +";");
-        output.append(moReporterDataSource.composeQuery() + "\n\n\n");
-        output.close();
         
         ResultSetMetaData metaData = resultSet.getMetaData();
 
